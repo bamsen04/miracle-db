@@ -1,5 +1,6 @@
 def insert(data):
-    pass
+    return None
 
 def get_data():
-    pass
+    return None
+ 
