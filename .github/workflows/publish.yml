@@ -24,15 +24,16 @@ jobs:
           echo "🧹 Cleaning previous builds..."
           rm -rf dist build *.egg-info
 
-          echo "⬆️ Installing build tools (setuptools pinned for PyPI compatibility)..."
-          python -m pip install --upgrade pip build wheel
-          pip install "setuptools<75"  # Force Metadata-Version 2.3 for PyPI compatibility
+          echo "⬇️ Installing setuptools 74.1.2 for PyPI compatibility..."
+          python -m pip install --upgrade pip wheel build
+          pip install setuptools==74.1.2
 
           echo "🏗️ Building package..."
           python -m build
 
           echo "📦 Built distributions:"
           ls -l dist
+          unzip -p dist/*.whl METADATA | head
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@v1.10.0
